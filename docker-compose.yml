@@ -1,0 +1,47 @@
+version: "3.4"
+
+services:
+  app:
+    build: .
+#    image: path-api:latest build ettiğimiz image ın ismi- en son versiyonunu build eder.
+    image: path-api:latest
+#    container_name: path-api   containerimızın adınını tanımlıyoruz.
+    container_name: path-api
+#    networks: alttaki kısımda hangi networke baglanacagını belirtiyoruz
+    networks:
+      - nt-path
+#    restart: always  kapanma durumunda containerı tekrardan ayağa kaldırıyor. stop denirse durur.
+    restart: always
+#    volumes:   container nereden besleneceğini belirtir. alttakiler örn config ile app/configleri eşliyor.okunup yazılabılır yapıyoruz
+    volumes:
+      - ./config:/var/www/app/config:rw
+      - ./public:/var/www/app/public:rw
+      - ./src:/var/www/app/src:rw
+      - ./templates:/var/www/app/templates:rw
+      - ./tests:/var/www/app/tests:rw
+      - ./translations:/var/www/app/translations:rw
+      - ./docker/.env:/var/www/app/.env:rw
+    stdin_open: true
+    tty: true
+    ports:
+      - "9910:80"
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:10.4.17
+    container_name: path-db
+    networks:
+      - nt-path
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "11112222"
+      MYSQL_DATABASE: "docker_path"
+      MYSQL_USER: "cengiz"
+      MYSQL_PASSWORD: "22223333"
+    ports:
+      - "9911:3306"
+
+#    burada network olusturuyoruz
+networks:
+  nt-path: {}
