@@ -1,0 +1,81 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ "homePage"|trans }}{% endblock %}
+
+
+
+{% block customScript %}
+    <script>
+        const pageVue = new Vue({
+            delimiters: ['${', '}'],
+            el: '#page',
+            data: {
+                test: function () {
+                    let _this = this;
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://127.0.0.1:8000/api/login_check',
+                        // url: 'https://api.hooop.de/api/login_check',
+                        headers: {
+                            'accept': "application/json",
+                            'Content-Type': "application/json",
+                        },
+                        data: JSON.stringify({
+                            // "username": "kosan-ahmet@hotmail.de",
+                            // "password": "Fener@1907"
+                            "username": "test",
+                            "password": "0123456"
+                        }),
+                        success: function (data) {
+                            console.log(data);
+                            _this.token = data.token;
+                        },
+                        error: function (data) {
+                            console.log(data.responseJSON);
+                        }
+                    });
+                },
+                test2: function () {
+                    let _this = this;
+                    $.ajax({
+                        type: 'POST',
+                        url: '/tr/api/mobil-function/create-order',
+                        headers: {
+                            'Authorization': "Bearer " + _this.token,
+                            'accept': "application/json",
+                            'Content-Type': "application/json",
+                        },
+                        // data: JSON.stringify({
+                        //     "email": "test@test.com"
+                        // }),
+                        data: JSON.stringify({
+                            'quantity': 1,
+                            'address': "asdasdsaaaa",
+                            'product': 1,
+                        }),
+                        success: function (data) {
+                            console.log(data);
+                        },
+                        error: function (data) {
+                            console.log(data.responseJSON);
+                        }
+                    });
+                },
+
+            },
+            methods: {},
+            computed: {},
+            watch: {},
+            created() {
+                let _this = this;
+                $(document).ready(function () {
+
+                })
+            }
+        })
+    </script>
+{% endblock %}
+
+{% block body %}
+    <h1>{{ "homePage"|trans }}</h1>
+{% endblock %}

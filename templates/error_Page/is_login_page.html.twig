@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block customScript %}
+    <script>
+        const pageVue = new Vue({
+            delimiters: ['${', '}'],
+            el: '#page',
+            data: {},
+            methods: {},
+            computed: {},
+            watch: {},
+            created() {
+                let _this = this;
+                $(document).ready(function () {
+                    $(".giris-btn").trigger( "click" );
+                })
+            }
+        });
+    </script>
+{% endblock %}
+{% block body %}
+
+{% endblock %}

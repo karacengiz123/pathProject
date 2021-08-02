@@ -1,0 +1,6 @@
+sg_datatables_bundle:
+  resource: "@SgDatatablesBundle/Controller/"
+  type:     annotation
+  prefix:   /{_locale}/sg
+  requirements:
+    _locale: '%locales%'

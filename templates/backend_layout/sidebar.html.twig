@@ -1,0 +1,41 @@
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li>
+                        <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                            <i class="icons-Security-Settings"></i>
+                            <span class="hide-menu">
+                                {{ "admin"|trans }}
+                                <span class="badge badge-pill badge-cyan ml-auto">5</span>
+                            </span>
+                        </a>
+                        <ul aria-expanded="false" class="collapse">
+
+{#                            <li><a href="{{ path('level_index') }}">{{ "level"|trans }} - {{ "list"|trans }}</a></li>#}
+{#                            <li><a href="{{ path('category_index') }}">{{ "category"|trans }} - {{ "list"|trans }}</a></li>#}
+{#                            <li><a href="{{ path('word_index') }}">{{ "word"|trans }} - {{ "list"|trans }}</a></li>#}
+
+                            </a>
+                                </a>
+                                <ul aria-expanded="false" class="collapse">
+                                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                        <li><a href="{{ path('admin_home_page') }}">{{ "testSuperAdmin"|trans }}</a></li>
+                                    {% endif %}
+                                    {% if is_granted('ROLE_SUPER_ADMIN') == false and is_granted('ROLE_ADMIN') %}
+                                        <li><a href="{{ path('admin_home_page') }}">{{ "testAdmin"|trans }}</a></li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>

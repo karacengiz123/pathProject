@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}">
+<head>
+    {# TODO: PAGE META SKELETON START #}
+    {{ include('layout/meta.html.twig') }} {# TODO: META 'LARINIZI META.HTML 'İN İÇİNE YAZINIZ #}
+    {# TODO: PAGE META SKELETON STOP #}
+    {% block customMeta %}
+        <meta name="description" content="{{ hostingName }}">
+    {% endblock %}
+
+    <title>{% block title %}{{ hostingName }}{% endblock %}</title> {# TODO: ÇALIŞAN SAYFAYIN TİTLE 'INI DEĞİŞTİRMEK İÇİN BU BULOĞU ÇAĞIRARAK DEĞİŞTİRİNİZ #}
+
+    {% block stylesheets %}
+        {# TODO: PAGE CSS SKELETON START #}
+        {{ include('layout/css.html.twig') }} {# TODO: CSS 'LERİNİZİ CSS.HTML 'İN İÇİNE ---SKELETON 'NUN ALTINA YAZINIZ #}
+        {# TODO: PAGE CSS SKELETON STOP #}
+
+        {# TODO: CUSTOM.CSS HER ZAMAN EN ALTTA KALSIN --- BURAYA TÜM PROJEDE EVRENSEL OLAN CSS 'LERİNİZİ YAZINIZ #}
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/css/custom.css') }}" media="all"/>
+    {% endblock %}
+    {% block customCss %}{% endblock %} {# TODO: SADECE ÇALIŞILAN SAYFA İÇİN OLACAK CSS DEĞİŞİKLİKLERİNİ BU BLOĞU ÇAĞIRARAK YAZINIZ #}
+</head>
+<body>
+<div id="headerVue">
+    {{ include('layout/header.html.twig') }}
+</div>
+<div id="navVue">
+    {{ include('layout/nav_bar.html.twig') }}
+</div>
+<div id="page"> {# TODO: PAGE İD 'SİNİ DEĞİŞTİRMEYİN VUE.JS 'İN BÜTÜN SAYFAYI ETKİLEYEBİLMESİ İÇİN BU İD 'Yİ KULLANIYORUZ #}
+    {% block body %}
+
+    {% endblock %}
+</div>
+<div id="footerVue">
+    {{ include('layout/footer.html.twig') }}
+</div>
+{% block javascripts %}
+    {# TODO: PAGE JS SKELETON START #}
+    {{ include('layout/js.html.twig') }}{# TODO: JS 'LERİNİZİ JS.HTML 'İN İÇİNE ---SKELETON 'NUN ALTINA YAZINIZ #}
+    {# TODO: PAGE JS SKELETON STOP #}
+
+    {# TODO: CUSTOM.JS WE ROUTE START/STOP KOD BLOĞU HER ZAMAN EN ALTTA KALSIN --- BURAYA TÜM PROJEDE EVRENSEL OLAN JS 'LERİNİZİ YAZINIZ #}
+    <script type="text/javascript" src="{{ asset('assets/frontend/js/custom.js') }}"></script>
+
+    <script>
+        const headerVue = new Vue({
+            delimiters: ['${', '}'],
+            el: '#headerVue',
+            data: {},
+            methods: {},
+            computed: {},
+            watch: {},
+            created() {
+                let _this = this;
+                $(document).ready(function () {
+                })
+            }
+        });
+        const navVue = new Vue({
+            delimiters: ['${', '}'],
+            el: '#navVue',
+            data: {},
+            methods: {},
+            computed: {},
+            watch: {},
+            created() {
+                let _this = this;
+                $(document).ready(function () {
+                })
+            }
+        });
+        const footerVue = new Vue({
+            delimiters: ['${', '}'],
+            el: '#footerVue',
+            data: {},
+            methods: {
+                imageZoom: function (imgId, resultId) {
+                    var img = $(imgId),
+                        imgSrc = img.attr("src"),
+                        result = $(resultId);
+
+
+                    var lens = $("<div></div>", {
+                        "class": "img-zoom-lens"
+                    }).prependTo(img.parent());
+
+                    var cx = result.width() / lens.width(),
+                        cy = result.height() / lens.height();
+
+
+                    result.css({
+                        "background-image": "url(" + imgSrc + ")",
+                        "background-size": img.width() * cx + "px " + img.height() * cy + "px",
+                    });
+
+                    lens.mousemove(lensMove);
+                    img.mousemove(lensMove);
+
+                    function lensMove(e) {
+                        e.preventDefault();
+                        var x = e.pageX,
+                            y = e.pageY,
+                            imageOffset = img.offset(),
+                            boundXLeft = imageOffset.left,
+                            boundXRight = imageOffset.left + img.width(),
+                            boundYTop = imageOffset.top,
+                            boundYBottom = imageOffset.top + img.height(),
+                            lensWidth = lens.width(),
+                            lensWidthHalf = lensWidth / 2,
+                            lensHeight = lens.height(),
+                            lensHeightHalf = lensHeight / 2;
+
+                        if (x < boundXLeft + lensWidthHalf) {
+                            x = boundXLeft + lensWidthHalf
+                        }
+                        if (x > boundXRight - lensWidthHalf) {
+                            x = boundXRight - lensWidthHalf
+                        }
+                        if (y < boundYTop + lensHeightHalf) {
+                            y = boundYTop + lensHeightHalf
+                        }
+                        if (y > boundYBottom - lensHeightHalf) {
+                            y = boundYBottom - lensHeightHalf
+                        }
+
+                        lens.offset({
+                            top: y - lensHeightHalf,
+                            left: x - lensWidthHalf
+                        });
+
+
+                        x = x - boundXLeft - lensWidthHalf;
+                        y = y - boundYTop - lensHeightHalf;
+
+                        result.css("background-position", "-" + x * cx + "px -" + y * cy + "px");
+
+                    }
+                },
+                pleaseWaitProcessor: function() {
+                    // TODO: BURADAKİ UYARI MESAJI DİLE GÖRE DEĞİŞECEK
+                    swal.fire({
+                        title: '{{ "pleaseWaitTitle"|trans }}',
+                        html: '{{ "yourTransactionIsInProgress"|trans }}',
+                        timer: 999999999,
+                        allowOutsideClick: false,
+                        closeOnClickOutside: false,
+                        allowEscapeKey: false,
+                        onBeforeOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+                },
+                priceMask: function (data) {
+                    return accounting.formatMoney(data, {symbol: "₺", format: "%v %s"});
+                },
+            },
+            computed: {},
+            watch: {},
+            created() {
+                let _this = this;
+                $(document).ready(function () {
+                })
+            }
+        });
+    </script>
+{% endblock %}
+
+{% block customScript %}{% endblock %} {# TODO: SADECE ÇALIŞILAN SAYFA İÇİN OLACAK JS DEĞİŞİKLİKLERİNİ BU BLOĞU ÇAĞIRARAK YAZINIZ #}
+</body>
+</html>

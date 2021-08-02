@@ -1,0 +1,20 @@
+<phpunit bootstrap="test/Bootstrap.php" backupGlobals="false">
+    <php>
+        <ini name="memory_limit" value="4G" />
+    </php>
+    <testsuites>
+        <testsuite name="Integration test suite">
+            <directory>test/integration/*</directory>
+        </testsuite>
+        <testsuite name="Unit test suite">
+            <directory>test/unit/*</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true" processUncoveredFilesFromWhitelist="false">
+            <directory suffix=".php">src/*</directory>
+            <exclude>
+            </exclude>
+        </whitelist>
+    </filter>
+</phpunit>

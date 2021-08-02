@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block customScript %}
+    <script>
+        const pageVue = new Vue({
+            delimiters: ['${', '}'],
+            el: '#page',
+            data: {
+                exception: `{{ exception|raw }}`,
+                fk: `{{ fk|raw }}`,
+                searchResult: ''
+            },
+            methods: {
+                myFunction: function () {
+                    let _this = this;
+                    // _this.searchResult= _this.exception.indexOf("foreign key");
+                    let index = _this.exception.indexOf('a foreign key');
+                    if (index > -1) {
+                        _this.searchResult = `The field you are trying to delete is used in another table.<br> (Relational Code:` + _this.fk + `)`;
+                    } else {
+                        _this.searchResult = _this.exception;
+                    }
+                }
+            },
+            computed: {},
+            watch: {},
+            created() {
+                let _this = this;
+                $(document).ready(function () {
+                    _this.myFunction();
+                })
+            }
+        });
+    </script>
+{% endblock %}
+{% block body %}
+    <div class="list-sfs-holder">
+        <div>
+            <div>
+                <img style="position: absolute; width: 100%!important; height: 100%!important; left: 0!important; right: 0!important; bottom: 0!important; top: 180px!important;"
+                     src="{{ asset('assets/backend/images/errorOpps.jpg') }}">
+                <h4 style="position: relative; padding: 320px!important; color: red!important; padding-left: 280px!important;">
+                    <span>{{ "errorPageTitle"|trans }}</span><br>
+                    <br>
+                    <b>{{ "exceptionMessage"|trans }}: </b><br/>
+                    <b v-html="searchResult"></b><br/>
+                </h4>
+            </div>
+            <div class="alert alert-error" style="position: relative;">
+            </div>
+        </div>
+    </div>
+{% endblock %}

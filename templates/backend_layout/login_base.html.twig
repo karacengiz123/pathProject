@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}">
+<head>
+    {# TODO: PAGE META SKELETON START #}
+    {{ include('layout/meta.html.twig') }} {# TODO: META 'LARINIZI META.HTML 'İN İÇİNE YAZINIZ #}
+    {# TODO: PAGE META SKELETON STOP #}
+    {% block customMeta %}{% endblock %}
+
+    <title>{% block title %}{{ hostingName }}{% endblock %}</title> {# TODO: ÇALIŞAN SAYFAYIN TİTLE 'INI DEĞİŞTİRMEK İÇİN BU BULOĞU ÇAĞIRARAK DEĞİŞTİRİNİZ #}
+
+    {% block stylesheets %}
+        {# TODO: PAGE CSS SKELETON START #}
+        {{ include('layout/css.html.twig') }} {# TODO: CSS 'LERİNİZİ CSS.HTML 'İN İÇİNE ---SKELETON 'NUN ALTINA YAZINIZ #}
+        {# TODO: PAGE CSS SKELETON STOP #}
+
+        {# TODO: CUSTOM.CSS HER ZAMAN EN ALTTA KALSIN --- BURAYA TÜM PROJEDE EVRENSEL OLAN CSS 'LERİNİZİ YAZINIZ #}
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/css/custom.css') }}" media="all" />
+    {% endblock %}
+    {% block customCss %}{% endblock %} {# TODO: SADECE ÇALIŞILAN SAYFA İÇİN OLACAK CSS DEĞİŞİKLİKLERİNİ BU BLOĞU ÇAĞIRARAK YAZINIZ #}
+</head>
+<body class="skin-default card-no-border">
+<div id="page"> {# TODO: PAGE İD 'SİNİ DEĞİŞTİRMEYİN VUE.JS 'İN BÜTÜN SAYFAYI ETKİLEYEBİLMESİ İÇİN BU İD 'Yİ KULLANIYORUZ #}
+{#    <div class="container-fluid">#}
+        {% block body %}{% endblock %}
+{#    </div>#}
+</div>
+
+{% block javascripts %}
+    {# TODO: PAGE JS SKELETON START #}
+    {{ include('layout/js.html.twig') }} {# TODO: JS 'LERİNİZİ JS.HTML 'İN İÇİNE ---SKELETON 'NUN ALTINA YAZINIZ #}
+    {# TODO: PAGE JS SKELETON STOP #}
+
+    {# TODO: CUSTOM.JS WE ROUTE START/STOP KOD BLOĞU HER ZAMAN EN ALTTA KALSIN --- BURAYA TÜM PROJEDE EVRENSEL OLAN JS 'LERİNİZİ YAZINIZ #}
+    <script type="text/javascript" src="{{ asset('assets/backend/js/custom.js') }}"></script>
+{% endblock %}
+{% block customScript %}{% endblock %} {# TODO: SADECE ÇALIŞILAN SAYFA İÇİN OLACAK JS DEĞİŞİKLİKLERİNİ BU BLOĞU ÇAĞIRARAK YAZINIZ #}
+</body>
+</html>

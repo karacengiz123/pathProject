@@ -1,0 +1,21 @@
+framework:
+    translator: ~
+    secret: '%env(APP_SECRET)%'
+    csrf_protection: true
+    ide: 'phpstorm://open?url=file://%%f&line=%%l'
+    session:
+        handler_id: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
+        cookie_lifetime: 31536000
+        gc_maxlifetime:  31536000
+    templating: { engines: ['twig'] }
+    php_errors:
+        log: true
+    cache: ~
+
+fos_user:
+  db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+  firewall_name: main
+  user_class: App\Entity\User
+  from_email:
+    address: "nobody"
+    sender_name: "nobody"

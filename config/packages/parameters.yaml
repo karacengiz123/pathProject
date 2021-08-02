@@ -1,0 +1,9 @@
+# TODO: !!... MÜMKÜN BURAYA YAZIP; DEV VE PROD AYRIMINI ENV İÇERİSİNDE YAPINIZ ...!!
+parameters:
+  uploadDirectory: '%kernel.project_dir%/public/assets/uploads'
+  cacertAssetsRoute: '%kernel.project_dir%/public/assets/'
+  hostUrlName: '%env(HOST_URL_NAME)%'
+  hostingName: '%env(HOSTING_NAME)%'
+  serverIpAdress: '%env(SERVER_IP_ADRESS)%'
+  socketCrt: "%kernel.project_dir%/config/socket_auth/%env(HOSTING_NAME)%.crt"
+  socketKey: "%kernel.project_dir%/config/socket_auth/%env(HOSTING_NAME)%.key"

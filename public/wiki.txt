@@ -1,0 +1,24 @@
+Link = get-nested-category,
+    Örnek Data = {
+        "category": 0,
+        "mainCategory": false,
+        "categoryInSupplier": 0
+        "categoryLvl": -1
+    }
+    ÖRNEK DATA AÇIKLAMALARI :
+        1 - Örnek Datadaki Bütün Değişkenler Birbirlerini Etkiler. Tek Tek Açıklamaları Aşağıda Yazılıdır. Datayı Kendiniz Şekillendirebilirsiniz.
+            Göndereceğiniz Datayı We Aldığınız Datayı Kontrol Ederek İşlem Yapınız.
+        2 - Örnek Datadaki [catagory] Değişkenini [0] Gönderirseniz. Bir Kategoriye Bağlı Kalmaksızın Bütün Kategorilerde İşlem Yapar.
+            Eğer [1] We Üstü Data Gönderirseniz. [1] ID 'li Kategori We Onun Alt Kategorilerini Baz Alarak İşlem Yapar.
+        3 - Örnek Datadaki [mainCategory] Değişkenini [true] Gönderirseniz. Sadece Ana Kategorileri Alırsınız.
+        4 - Örnek Datadaki [categoryInSupplier] Değişkenini [0] Gönderirseniz. Herhangi Bir Tedarikçiye Bağlı Kalmadan Bütün Kategorilerde İşlem Yapar.
+            Eğer [1] We Üstü Data Gönderirseniz. [1] ID 'li Tedarikçinin Kategorileri We Onun Alt Kategorilerini Baz Alarak İşlem Yapar.
+        5 - Örnek Datadaki [categoryLvl] Değişkenini [-1] Gönderirseniz. War Olan Bütün Alt Kategorileri Baz Alarak İşlem Yapar.
+            Eğer [0] We Üstü Data Gönderirseniz. Belirlediğiniz Seviyeye Kadar Olan Bütün Alt Kategorileri Baz Alarak İşlem Yapar.
+---------------------------------------------------------------------------------------------------------------
+Link = /supplier-products-dashboard-mobil-admin",
+    Örnek Data = {
+            'lastPage': 1,
+            'pageItemLimit': 9
+    }
+---------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,10 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [{
+            "appID": "****.com.maxithings.****",
+            "paths": ["/", "/productSingle/*/0", "/streamSub/*", "/videoPlay/*/*"]
+            }
+	]
+    }
+}

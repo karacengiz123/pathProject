@@ -1,0 +1,126 @@
+{% extends "backend_base.html.twig" %}
+
+{% block title %}{{ "batmanList"|trans }}{% endblock %}
+{% block customCss %}
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            width: 40%;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
+
+        .inner {
+            display: table;
+            margin: 0 auto;
+            border-radius: 25px !important;
+        }
+
+        .inner > img {
+            -moz-border-radius-topleft: 25px !important;
+            -moz-border-radius-topright: 25px !important;
+        }
+
+        .outer {
+            width: 100%;
+            margin-top: 10px !important;
+        }
+    </style>
+{% endblock %}
+
+
+
+{% block customScript %}
+    <script>
+        const pageVue = new Vue({
+            delimiters: ['${', '}'],
+            el: '#page',
+            data: {
+                batmans: {{ batmans|raw }}
+            },
+            methods: {},
+            computed: {},
+            watch: {},
+            created() {
+                let _this = this;
+                $(document).ready(function () {
+
+                })
+            }
+        })
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div style="text-align: center">
+        <h1>{{ "batmanGameList"|trans }}</h1>
+        <hr>
+    </div>
+
+    <div class="row col-md-n12">
+        <div class="col col-md-3 outer" v-for="batman in batmans" style="height: 350px; display: flex; ">
+            <div class=" card inner" style="width: 283px; position:relative;">
+               <div>
+                   <img :src="batman.thumb" style="height:150px;width: 283px; border-top-left-radius: 25px!important; border-top-right-radius: 25px!important">
+                   <div style="margin-top: 10px; padding: 10px; bottom: 10px;">
+                       ${ batman.title }
+                   </div>
+                   <div style="margin-top: 10px; position: absolute; bottom: 40px;">
+                       <span style="padding: 10px; color: red">${ batman.discountRate } indirim</span>
+                   </div>
+               </div>
+                <div class="col-sm-12 row" style="position: absolute; bottom: 10px;">
+                    <div class="col-sm-4" style="float: left">
+                        <span style="font-size: large"> ${ batman.salePrice } ₺</span>
+                    </div>
+                    <div class="col-sm-4" style="float: left">
+                        <span style="text-decoration: line-through; color: red; "> ${ batman.normalPrice } ₺</span>
+                    </div>
+                    <div class="col-sm-4" style="float: left">
+                        <button class="btn btn-sm btn-success" style="float: right"> ORDER</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {# <div class="col px-md-3 outer"> #}
+        {# <div class=" card p-12 border bg-ligh inner" style="width: 183px"> #}
+        {# <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/208650/capsule_sm_120.jpg?t=1591738126" height="100px"> #}
+        {# Custom column padding #}
+        {# <div> #}
+        {# <span>aaa</span> #}
+        {# <span>bbbb</span> #}
+        {# </div> #}
+
+        {# </div> #}
+        {# </div> #}
+        {# <div class="col px-md-3 outer"> #}
+        {# <div class=" card p-12 border bg-ligh inner" style="width: 183px"> #}
+        {# <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/208650/capsule_sm_120.jpg?t=1591738126" height="100px"> #}
+        {# Custom column padding #}
+        {# <div> #}
+        {# <span>aaa</span> #}
+        {# <span>bbbb</span> #}
+        {# </div> #}
+
+        {# </div> #}
+        {# </div> #}
+        {# <div class="col px-md-3 outer"> #}
+        {# <div class=" card p-12 border bg-ligh inner" style="width: 183px"> #}
+        {# <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/208650/capsule_sm_120.jpg?t=1591738126" height="100px"> #}
+        {# Custom column padding #}
+        {# <div> #}
+        {# <span>aaa</span> #}
+        {# <span>bbbb</span> #}
+        {# </div> #}
+
+        {# </div> #}
+        {# </div> #}
+    </div>
+{% endblock %}

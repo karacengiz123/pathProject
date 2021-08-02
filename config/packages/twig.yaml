@@ -1,0 +1,12 @@
+twig:
+  form_themes: ['bootstrap_4_layout.html.twig']
+  globals:
+    locale: '%locale%'
+    pub: 1
+    uploadDirectory: '%uploadDirectory%'
+    cacertAssetsRoute: '%cacertAssetsRoute%'
+    hostUrlName: '%hostUrlName%'
+    hostingName: '%hostingName%'
+    serverIpAdress: '%serverIpAdress%'
+    socketCrt: "%socketCrt%"
+    socketKey: "%socketKey%"

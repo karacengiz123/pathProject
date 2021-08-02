@@ -1,0 +1,39 @@
+{% extends 'backend_base.html.twig' %}
+
+{% block customCss %}
+    <style>
+        #cancelResetPasswordForm{
+            position: absolute;
+            right: 30px;
+            top: 20px;
+        }
+        #cancelResetPasswordForm:hover{
+            cursor: pointer;
+        }
+        #loginLogo{
+            width: 200px;
+        }
+        #loginError{
+            margin-top: 10px;
+            color: red;
+            text-align: left;
+        }
+    </style>
+{% endblock %}
+
+{% block customScript %}
+    <script>
+        $('#to-recover').on("click", function() {
+            $("#loginform").slideUp();
+            $("#recoverform").fadeIn();
+        });
+        $('#cancelResetPasswordForm').on("click", function() {
+            $("#recoverform").slideUp();
+            $("#loginform").fadeIn();
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+    {% block fos_user_content %}{% endblock fos_user_content %}
+{% endblock %}

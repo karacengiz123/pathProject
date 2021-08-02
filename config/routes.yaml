@@ -1,0 +1,13 @@
+fos_user:
+  resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+  prefix: /{_locale}/admin
+  requirements:
+    _locale: '%locales%'
+api_login_check:
+  path: /api/login_check
+  requirements:
+    _locale: '%locales%'
+api:
+  path: /{_locale}/api
+  requirements:
+    _locale: '%locales%'
