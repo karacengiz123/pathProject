@@ -12,7 +12,7 @@ Dockerın  çalıştırılması  sonrasına http://127.0.0.1:9910/tr/  url 'i si
 
 Api postman collection bilgileri aşağıdaki linkten postman uygulamasına import ederek tüm bilgilere ulaşabilirsiniz.
 
-https://www.getpostman.com/collections/b49365cd766fd54c157c
+https://www.getpostman.com/collections/eed8be42496491a369d4
 
 Sisteme doctirne migration ile 4 tane kullanıcı otomatik tanımlanmıştır.
 Sisteme doctirne migration ile 4 tane ürün otomatik tanımlanmıştır.
